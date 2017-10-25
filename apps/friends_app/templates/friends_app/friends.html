@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Friends App!</title>
+    </head>
+    <body>
+        <div class="">
+            <h1 style="display: inline-block;">Hello {{request.session.f_name}}! Welcome to your Page!</h1>
+            <a style="margin-left: 300px;" href="/logout">Logout</a>
+        </div>
+        <hr>
+        <table><h3>Your Friends:</h3>
+
+            <tr>
+                <th>Alias</th>
+                <th>Action</th>
+            </tr>
+                {% for bud in buddies %}
+                <tr>
+                    <th><a href="show/{{bud.id}}">{{bud.f_name}}</a> </th>
+                    <th><a href="/remove/friend/{{bud.id}}">Remove Friend</a></th>
+                </tr>
+                {% endfor %}
+        </table>
+
+        <hr>
+        <h3 style="text-decoration: underline;">Other Users</h3>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <th>Action:</th>
+            </tr>
+
+            {%for user in users | not in buddies %}
+            <tr>
+                <td><a href="show/{{user.id}}">{{user.f_name}}</a> </td>
+                <td><a href="add/friend/{{user.id}}">Add as Friend</a> </td>
+            </tr>
+            {%endfor%}
+        </table>
+
+
+
+
+    </body>
+</html>
